@@ -4,305 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitForge</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-<!DOCTYPE html>
-<html lang="en">    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitForge</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-black text-gray-900 p-4 md:p-6">  <!-- थोड़ा पैडिंग दिया है ताकि लुक अच्छा आए -->
+<body class="bg-black text-gray-900 p-4 md:p-6 pt-24">
     
-    <!-- 1. नेविगेशन बार (अब यह बिल्कुल टॉप पर सुरक्षित रहेगा) -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md flex items-center justify-between mb-8 bg-white/5 w-full p-6 rounded-lg backdrop-blur-md border border-white/10 shadow-md">
-
-        <h1 class="text-3xl md:text-5xl font-bold text-center text-white"> FitForge</h1>
-        <nav>
-            <ul class="flex space-x-4 text-lg font-medium text-gray-300">
-                <li><a class="hover:underline hover:text-blue-500" href="#home">Home</a></li>
-                <li><a class="hover:underline hover:text-blue-500" href="#subscribe">Subscribe</a></li>
-                <li><a class="hover:underline hover:text-blue-500" href="#login">Login</a></li>
-                <li><a class="hover:underline hover:text-blue-500" href="#buy">Buy Something</a></li>
+    <!-- 1. NAVIGATION BAR (Fully Mobile Responsive) -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between shadow-lg">
+        <h1 class="text-2xl md:text-3xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-pink-500">
+            FitForge
+        </h1>
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden md:block">
+            <ul class="flex space-x-8 text-sm uppercase tracking-wider font-semibold text-gray-300">
+                <li><a class="hover:text-pink-500 transition-colors duration-200" href="#home">Home</a></li>
+                <li><a class="hover:text-pink-500 transition-colors duration-200" href="#why">Why Us</a></li>
+                <li><a class="hover:text-pink-500 transition-colors duration-200" href="#create">Plans</a></li>
+                <li><a class="hover:text-pink-500 transition-colors duration-200" href="#subscribe">Subscribe</a></li>
             </ul>
         </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-white focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+        </button>
+
+        <!-- Mobile Sidebar Overlay Menu -->
+        <div id="mobile-menu" class="fixed top-[73px] left-0 w-full h-[calc(100vh-73px)] bg-black/95 backdrop-blur-xl border-t border-white/10 flex flex-col items-center justify-center space-y-8 text-xl font-medium tracking-wide text-gray-300 transition-all duration-300 transform translate-x-full md:hidden">
+            <a class="mobile-link hover:text-pink-500 transition-colors" href="#home">Home</a>
+            <a class="mobile-link hover:text-pink-500 transition-colors" href="#why">Why Us</a>
+            <a class="mobile-link hover:text-pink-500 transition-colors" href="#create">Plans</a>
+            <a class="mobile-link hover:text-pink-500 transition-colors" href="#subscribe">Subscribe</a>
+            <a class="mobile-link w-3/4 py-3 text-center bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-xl shadow-lg shadow-pink-500/20 text-sm uppercase tracking-widest" href="#subscribe">Get VIP Access</a>
+        </div>
     </header>
 
-    <!-- 2. होम / इमेज सेक्शन (यहाँ जादू हुआ है!) -->
-    <!-- हमने यहाँ 'relative' और एक फिक्स हाइट 'h-[500px]' (या h-screen) दी है -->
-    <div id="home" class="relative w-full h-[900px] overflow-hidden rounded-xl shadow-lg mb-12">
-        
-        <!-- इमेज: अब यह सिर्फ इस डिव के अंदर ही रहेगी और पूरी तरह भरेगी (object-cover) -->
+    <!-- 2. HOME / IMAGE SECTION -->
+    <div id="home" class="relative w-full h-[600px] md:h-[800px] overflow-hidden rounded-3xl shadow-2xl mb-12 mt-4">
         <img class="absolute inset-0 w-full h-full object-cover" src="./images/luke-witter-k47w6BeapCs-unsplash.jpg" alt="Fitness Image">
-        
-        <!-- डार्क ओवरले और टेक्स्ट: यह भी सिर्फ इसी डिव के सेंटर में रहेगा -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/50 p-6 text-center">
-            <!-- आपका वेलकम हेडिंग भी हमने इमेज के ऊपर ही ले लिया ताकि लुक प्रोफेशनल लगे -->
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">Welcome to FitForge</h2>
-            <p class="text-lg md:text-xl text-gray-300 max-w-2xl drop-shadow-md">Your ultimate destination for fitness and wellness. <br> Join us to forge a healthier, stronger you!</p>
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 p-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-4 text-white drop-shadow-2xl tracking-tight">Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500">FitForge</span></h2>
+            <p class="text-base md:text-xl text-gray-300 max-w-2xl drop-shadow-md leading-relaxed">Your ultimate destination for fitness and wellness. <br class="hidden sm:inline"> Join us to forge a healthier, stronger you!</p>
         </div>
     </div>   
 
-      
-   <div id="why" class="max-w-6xl mx-auto py-16 px-4">
-    <!-- Heading Section -->
-    <h2 class="text-4xl md:text-4xl font-extrabold text-white text-center tracking-tight">
-        Why Choose <span class="text-indigo-500">FitForge</span>?
-    </h2>
-    <p class="text-gray-400 text-center mt-2 max-w-md mx-auto text-sm md:text-base">
-        We don't just provide workouts, we help you transform your lifestyle.
-    </p>
-
-    <!-- Cards Grid Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">   
-        
-        <!-- Card 1: Expert Trainers -->
-        <div class="relative overflow-hidden group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-2">
-            <!-- Image/Icon Container -->
-            <div class="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500/30 bg-gray-950 flex items-center justify-center shadow-inner">
-                <img class="w-full h-full object-cover" src="./images/trainer.png" alt="Expert Trainers">
-            </div>
-            <!-- Text Content -->
-            <div class="text-center">
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Expert Trainers</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Our team of certified trainers is here to guide you every step of the way.</p>
-            </div>
-        </div>
-
-        <!-- Card 2: Personalized Plans -->
-        <div class="relative overflow-hidden group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2">
-            <!-- Image/Icon Container -->
-            <div class="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border-2 border-emerald-500/30 bg-gray-950 flex items-center justify-center shadow-inner">
-                <img class="w-full h-full object-cover" src="./images/personalized.png" alt="Personalized Plans">
-            </div>
-            <!-- Text Content -->
-            <div class="text-center">
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Personalized Plans</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">We create customized workout and nutrition plans tailored to your goals.</p>
-            </div>
-        </div>
-
-        <!-- Card 3: Community Support -->
-        <div class="relative overflow-hidden group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
-            <!-- Image/Icon Container -->
-            <div class="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border-2 border-amber-500/30 bg-gray-950 flex items-center justify-center shadow-inner">
-                <img class="w-full h-full object-cover" src="./images/community.png" alt="Community Support">
-            </div>
-            <!-- Text Content -->
-            <div class="text-center">
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Community Support</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Join a supportive community of fitness enthusiasts to stay motivated.</p>
-            </div>
-        </div>
-
-    </div>   
-</div>
-
-<section id="create" class="max-w-6xl mx-auto py-16 px-4 space-y-16">
-    <!-- मेन हेडिंग -->
-    <h2 class="text-4xl md:text-5xl font-extrabold text-white text-center tracking-tight mb-12">
-        <span class="text-pink-500"> Make </span> <span class="text-yellow-500">Your </span> <span class="text-emerald-500">Plan</span>
-    </h2>
-    
-    <!-- 1. Diet Plan Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
-        <!-- इमेज वाली साइड -->
-        <div class="h-64 md:h-80 overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/mark-deyoung-mjcJ0FFgdWI-unsplash.jpg" alt="Diet Plan">
-        </div>
-        <!-- कंटेंट वाली साइड (नाम, पैराग्राफ, बटन) -->
-        <div class="flex flex-col justify-center space-y-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Diet Plan</h1>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                Our diet plan creator is designed to help you build a personalized nutrition plan that fits your lifestyle and goals. Whether you're looking to lose weight, gain muscle, or simply eat healthier, our tool provides you with the resources and guidance you need to succeed. With a wide variety of meal options, customizable macronutrient targets, and expert advice, you can create a diet plan that works for you.
-            </p>
-            <div>
-                <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. Workout Plan Section (इमेज राइट साइड में करने के लिए md:flex-row-reverse का फील देने के लिए order-first का यूज़ किया है) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
-        <!-- कंटेंट वाली साइड -->
-        <div class="flex flex-col justify-center space-y-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Workout Plan</h1>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                Our workout plan creator is designed to help you build a personalized fitness routine that aligns with your goals and lifestyle. Whether you're looking to lose weight, build muscle, improve endurance, or simply stay active, our tool provides you with the resources and guidance you need to succeed. With a wide variety of exercises, customizable workout schedules, and expert advice.
-            </p>
-            <div>
-                <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
-            </div>
-        </div>
-        <!-- इमेज वाली साइड (बड़े स्क्रीन पर यह पहले (राइट में) दिखेगी) -->
-        <div class="h-64 md:h-80 overflow-hidden rounded-xl md:order-last order-first">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/anastase-maragos-FP7cfYPPUKM-unsplash.jpg" alt="Workout Plan">
-        </div>
-    </div>
-
-    <!-- 3. Sleep Plan Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
-        <div class="h-64 md:h-80 overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/slaapwijsheid-nl-Ip3Z-FoLl1Q-unsplash.jpg" alt="Sleep Plan">
-        </div>
-        <div class="flex flex-col justify-center space-y-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Sleep Plan</h1>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                Our sleep plan creator is designed to help you build a personalized sleep routine that promotes better rest and overall well-being. Whether you're struggling with insomnia, looking to improve your sleep quality, or simply want to establish a consistent sleep schedule, our tool provides you with the resources and guidance you need to succeed.
-            </p>
-            <div>
-                <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. Meditation Plan Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
-        <div class="flex flex-col justify-center space-y-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Meditation Plan</h1>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                Our meditation plan creator is designed to help you build a personalized mindfulness routine that promotes relaxation, focus, and overall well-being. Whether you're new to meditation or looking to deepen your practice, our tool provides you with the resources and guidance you need to succeed. With customizable schedules and guided sessions.
-            </p>
-            <div>
-                <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
-            </div>
-        </div>
-        <div class="h-64 md:h-80 overflow-hidden rounded-xl md:order-last order-first">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/benjamin-child-rOn57CBgyMo-unsplash.jpg" alt="Meditation Plan">
-        </div>
-    </div>
-
-    <!-- 5. Home Workout Plan Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
-        <div class="h-64 md:h-80 overflow-hidden rounded-xl">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/giorgio-trovato-3c7tpmlJxXo-unsplash.jpg" alt="Home Workout Plan">
-        </div>
-        <div class="flex flex-col justify-center space-y-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Home Workout Plan</h1>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                Our home workout plan creator is designed to help you build a personalized fitness routine that you can do from the comfort of your own home. Whether you're looking to lose weight, build muscle, or simply stay fit, our tool provides you with the resources and guidance you need to succeed. Start creating your perfect home workout plan today!
-            </p>
-            <div>
-                <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div className="subscribe" class="min-h-screen w-full bg-gradient-to-br from-blue-900 via-black to-blue-900 flex items-center justify-center p-4 font-sans text-white select-none">
-  
-  <!-- Main Glass Container -->
-  <div class="w-full max-w-5xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2">
-    
-    <!-- LEFT SECTION: REGISTRATION FORM -->
-    <div class="p-8 md:p-12 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/10">
-      <div class="mb-8">
-        <h2 class="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-pink-200">
-          Get Started 
+    <!-- 3. WHY CHOOSE SECTION -->
+    <div id="why" class="max-w-6xl mx-auto py-16 px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center tracking-tight">
+            Why Choose <span class="text-indigo-500">FitForge</span>?
         </h2>
-        <p class="text-sm text-white/60 mt-2">Create your account today and unlock premium features.</p>
-      </div>
-
-      <form class="space-y-5" onsubmit="event.preventDefault();">
-        <!-- Name Input -->
-        <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-pink-200 mb-1">Full Name</label>
-          <input type="text" placeholder="John Doe" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all duration-300" />
-        </div>
-
-        <!-- Email Input -->
-        <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-pink-200 mb-1">Email Address</label>
-          <input type="email" placeholder="johndoe@example.com" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all duration-300" />
-        </div>
-
-        <!-- Password Input -->
-        <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-pink-200 mb-1">Password</label>
-          <input type="password" placeholder="••••••••" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all duration-300" />
-        </div>
-
-        <!-- Terms Checkbox -->
-        <div class="flex items-center space-x-2 pt-1">
-          <input type="checkbox" id="terms" class="rounded bg-white/10 border-white/20 text-pink-500 focus:ring-0 focus:ring-offset-0 w-4 h-4 cursor-pointer" />
-          <label for="terms" class="text-xs text-white/70 cursor-pointer">I agree to the Terms & Conditions</label>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="w-full mt-2 py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 font-bold rounded-xl shadow-lg shadow-pink-500/20 active:scale-[0.98] transition-all duration-200 text-sm tracking-wide">
-          Create Account 🚀
-        </button>
-      </form>
-    </div>
-
-    <!-- RIGHT SECTION: EXCLUSIVE MEMBERSHIP OFFER -->
-    <div class="p-8 md:p-12 bg-gradient-to-br from-white/5 to-transparent flex flex-col justify-between relative overflow-hidden">
-      
-      <!-- Ambient Glow Circle in Background -->
-      <div class="absolute -top-12 -right-12 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
-
-      <!-- Offer Header -->
-      <div class="relative">
-        <span class="inline-block px-3 py-1 bg-pink-500/20 border border-pink-500/30 text-pink-300 font-bold text-xs uppercase tracking-widest rounded-full mb-4">
-          Limited Time Offer 🔥
-        </span>
-        <h3 class="text-2xl font-bold">VIP Membership Deal</h3>
-        <p class="text-sm text-white/60 mt-1">Unlock boundless possibilities at an unbeatable price.</p>
-      </div>
-
-      <!-- Price Card (Highlight) -->
-      <div class="my-8 p-6 bg-white/5 border border-white/10 rounded-2xl relative overflow-hidden backdrop-blur-sm">
-        <div class="absolute top-0 right-0 bg-gradient-to-l from-pink-500 to-rose-500 text-[10px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-bl-xl">
-          70% OFF
-        </div>
-        <div class="flex items-baseline space-x-2">
-          <span class="text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-pink-100 to-pink-300">$19</span>
-          <span class="text-sm text-white/50 line-through">$59</span>
-          <span class="text-xs text-pink-300 font-medium">/ month</span>
-        </div>
-        <p class="text-xs text-emerald-400 mt-2 font-medium flex items-center">
-          ● Save $40 instantly by joining today
+        <p class="text-gray-400 text-center mt-2 max-w-md mx-auto text-sm md:text-base">
+            We don't just provide workouts, we help you transform your lifestyle.
         </p>
-      </div>
 
-      <!-- Benefits List -->
-      <div class="space-y-3.5 mb-8">
-        <div class="flex items-center space-x-3 text-sm text-white/80">
-          <span class="text-emerald-400 font-bold">✓</span>
-          <span>Full access to all premium courses & content</span>
-        </div>
-        <div class="flex items-center space-x-3 text-sm text-white/80">
-          <span class="text-emerald-400 font-bold">✓</span>
-          <span>24/7 priority live chat & expert support</span>
-        </div>
-        <div class="flex items-center space-x-3 text-sm text-white/80">
-          <span class="text-emerald-400 font-bold">✓</span>
-          <span>Ad-free, lightning-fast user experience</span>
-        </div>
-        <div class="flex items-center space-x-3 text-sm text-white/80">
-          <span class="text-emerald-400 font-bold">✓</span>
-          <span>Weekly exclusive tools & source code drops</span>
-        </div>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">   
+            <!-- Card 1: Expert Trainers -->
+            <div class="relative overflow-hidden group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border-2 border-indigo-500/30 bg-gray-950 flex items-center justify-center shadow-inner">
+                    <img class="w-full h-full object-cover" src="./images/trainer.png" alt="Expert Trainers">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Expert Trainers</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Our team of certified trainers is here to guide you every step of the way.</p>
+                </div>
+            </div>
 
-      <!-- Bottom Tagline -->
-      <p class="text-[11px] text-center text-white/40 italic">
-        *Cancel anytime. No hidden contracts or fees.
-      </p>
+            <!-- Card 2: Personalized Plans -->
+            <div class="relative overflow-hidden group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border-2 border-emerald-500/30 bg-gray-950 flex items-center justify-center shadow-inner">
+                    <img class="w-full h-full object-cover" src="./images/personalized.png" alt="Personalized Plans">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Personalized Plans</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">We create customized workout and nutrition plans tailored to your goals.</p>
+                </div>
+            </div>
 
+            <!-- Card 3: Community Support -->
+            <div class="relative overflow-hidden group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-2">
+                <div class="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border-2 border-amber-500/30 bg-gray-950 flex items-center justify-center shadow-inner">
+                    <img class="w-full h-full object-cover" src="./images/community.png" alt="Community Support">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">Community Support</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Join a supportive community of fitness enthusiasts to stay motivated.</p>
+                </div>
+            </div>
+        </div>   
     </div>
 
-  </div>
-</div>
-<footer class="mt-12  p-8 text-center text-sm text-gray-500">
-    &copy; 2024 FitForge. All rights reserved. 
-    <a href="#" class="text-pink-500 hover:underline">Privacy Policy</a> |
-    <a href="#" class="text-pink-500 hover:underline">Terms of Service</a>
+    <!-- 4. PLANS SECTION -->
+    <section id="create" class="max-w-6xl mx-auto py-16 px-4 space-y-16">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white text-center tracking-tight mb-12">
+            <span class="text-pink-500"> Make </span> <span class="text-yellow-500">Your </span> <span class="text-emerald-500">Plan</span>
+        </h2>
+        
+        <!-- 1. Diet Plan Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
+            <div class="h-64 md:h-80 overflow-hidden rounded-xl order-first">
+                <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/mark-deyoung-mjcJ0FFgdWI-unsplash.jpg" alt="Diet Plan">
+            </div>
+            <div class="flex flex-col justify-center space-y-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Diet Plan</h1>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Our diet plan creator is designed to help you build a personalized nutrition plan that fits your lifestyle and goals. Whether you're looking to lose weight, gain muscle, or simply eat healthier, our tool provides you with the resources and guidance you need to succeed.
+                </p>
+                <div>
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
+                </div>
+            </div>
+        </div>
 
-</footer>
+        <!-- 2. Workout Plan Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
+            <div class="flex flex-col justify-center space-y-4 order-last md:order-first">
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Workout Plan</h1>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Our workout plan creator is designed to help you build a personalized fitness routine that aligns with your goals and lifestyle. Whether you're looking to lose weight, build muscle, improve endurance, or simply stay active.
+                </p>
+                <div>
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
+                </div>
+            </div>
+            <div class="h-64 md:h-80 overflow-hidden rounded-xl order-first md:order-last">
+                <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/anastase-maragos-FP7cfYPPUKM-unsplash.jpg" alt="Workout Plan">
+            </div>
+        </div>
 
+        <!-- 3. Sleep Plan Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
+            <div class="h-64 md:h-80 overflow-hidden rounded-xl order-first">
+                <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/slaapwijsheid-nl-Ip3Z-FoLl1Q-unsplash.jpg" alt="Sleep Plan">
+            </div>
+            <div class="flex flex-col justify-center space-y-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Sleep Plan</h1>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Our sleep plan creator is designed to help you build a personalized sleep routine that promotes better rest and overall well-being. Establish a consistent sleep schedule with expert advice.
+                </p>
+                <div>
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Meditation Plan Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
+            <div class="flex flex-col justify-center space-y-4 order-last md:order-first">
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Meditation Plan</h1>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Our meditation plan creator is designed to help you build a personalized mindfulness routine that promotes relaxation, focus, and overall well-being.
+                </p>
+                <div>
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
+                </div>
+            </div>
+            <div class="h-64 md:h-80 overflow-hidden rounded-xl order-first md:order-last">
+                <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/benjamin-child-rOn57CBgyMo-unsplash.jpg" alt="Meditation Plan">
+            </div>
+        </div>
+
+        <!-- 5. Home Workout Plan Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-zinc-900/50 p-6 md:p-8 rounded-2xl border border-white/10 shadow-xl">
+            <div class="h-64 md:h-80 overflow-hidden rounded-xl order-first">
+                <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" src="./images/giorgio-trovato-3c7tpmlJxXo-unsplash.jpg" alt="Home Workout Plan">
+            </div>
+            <div class="flex flex-col justify-center space-y-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Make Your Home Workout Plan</h1>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                    Our home workout plan creator is designed to help you build a personalized fitness routine that you can do from the comfort of your own home.
+                </p>
+                <div>
+                    <button class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-pink-500/20 transition-all">Start Creating</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SUBSCRIBE SECTION -->
+    <div id="subscribe" class="w-full bg-gradient-to-br from-indigo-950 via-black to-purple-950 flex items-center justify-center p-2 md:p-6 font-sans text-white select-none rounded-3xl mb-12 shadow-2xl border border-white/5">
+        <div class="w-full max-w-5xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+            
+            <!-- LEFT SECTION: FORM -->
+            <div class="p-6 md:p-12 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/10">
+                <div class="mb-6">
+                    <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-pink-200">
+                        Get Started 
+                    </h2>
+                    <p class="text-xs md:text-sm text-white/60 mt-1">Create your account today and unlock premium features.</p>
+                </div>
+
+                <form class="space-y-4" onsubmit="event.preventDefault();">
+                    <div>
+                        <label class="block text-[10px] font-semibold uppercase tracking-wider text-pink-200 mb-1">Full Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all" />
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-semibold uppercase tracking-wider text-pink-200 mb-1">Email Address</label>
+                        <input type="email" placeholder="johndoe@example.com" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all" />
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-semibold uppercase tracking-wider text-pink-200 mb-1">Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all" />
+                    </div>
+                    <div class="flex items-center space-x-2 pt-1">
+                        <input type="checkbox" id="terms" class="rounded bg-white/10 border-white/20 text-pink-500 focus:ring-0 w-4 h-4 cursor-pointer" />
+                        <label for="terms" class="text-xs text-white/70 cursor-pointer">I agree to the Terms & Conditions</label>
+                    </div>
+                    <button type="submit" class="w-full mt-2 py-3 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 font-bold rounded-xl shadow-lg shadow-pink-500/20 active:scale-[0.98] transition-all text-xs uppercase tracking-wider">
+                        Create Account 🚀
+                    </button>
+                </form>
+            </div>
+
+            <!-- RIGHT SECTION: VIP ACCESS -->
+            <div class="p-6 md:p-12 bg-gradient-to-br from-white/5 to-transparent flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
+                <div class="relative">
+                    <span class="inline-block px-2.5 py-0.5 bg-pink-500/20 border border-pink-500/30 text-pink-300 font-bold text-[10px] uppercase tracking-widest rounded-full mb-3">
+                        Limited Time Offer 🔥
+                    </span>
+                    <h3 class="text-xl md:text-2xl font-bold">VIP Membership Deal</h3>
+                    <p class="text-xs text-white/60 mt-1">Unlock boundless possibilities at an unbeatable price.</p>
+                </div>
+
+                <div class="my-6 p-5 bg-white/5 border border-white/10 rounded-2xl relative overflow-hidden backdrop-blur-sm">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-pink-500 to-rose-500 text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-0.5 rounded-bl-xl">
+                        70% OFF
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-4xl md:text-5xl font-black tracking-tight text-white">$19</span>
+                        <span class="text-sm text-white/50 line-through">$59</span>
+                        <span class="text-xs text-pink-300 font-medium">/ month</span>
+                    </div>
+                    <p class="text-[11px] text-emerald-400 mt-2 font-medium">
+                        ● Save $40 instantly by joining today
+                    </p>
+                </div>
+
+                <div class="space-y-2.5 mb-6 text-xs md:text-sm text-white/80">
+                    <div class="flex items-center space-x-2"><span class="text-emerald-400 font-bold">✓</span><span>Full premium courses access</span></div>
+                    <div class="flex items-center space-x-2"><span class="text-emerald-400 font-bold">✓</span><span>24/7 priority expert support</span></div>
+                    <div class="flex items-center space-x-2"><span class="text-emerald-400 font-bold">✓</span><span>Ad-free lightning-fast UX</span></div>
+                </div>
+                <p class="text-[10px] text-center text-white/40 italic">*Cancel anytime. No hidden contracts.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. FOOTER -->
+    <footer class="p-6 text-center text-xs text-gray-500 border-t border-white/10 max-w-6xl mx-auto">
+        &copy; 2026 FitForge. All rights reserved. 
+        <div class="mt-2 space-x-2">
+            <a href="#" class="text-pink-500 hover:underline">Privacy Policy</a>
+            <span>|</span>
+            <a href="#" class="text-pink-500 hover:underline">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- RESPONSIVE HAMBURGER NAVIGATION SCRIPT -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = !mobileMenu.classList.contains('translate-x-full');
+            if (isOpen) {
+                // Menu rules close
+                mobileMenu.classList.add('translate-x-full');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+                document.body.style.overflow = ''; // enable scroll
+            } else {
+                // Menu opens
+                mobileMenu.classList.remove('translate-x-full');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+                document.body.style.overflow = 'hidden'; // lock scroll
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Auto close when any link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
 </body>
-
 </html>
